@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Publisher</title>
+</head>
+<body>
+  <input id='message' type="text" size="50"/> <button id="send">send</button>
+  <script>
+    document.getElementById('send').addEventListener('click', function(e) {
+      var req = new XMLHttpRequest();
+      req.open('GET', '/api/publish?m=' + document.getElementById('message').value);
+      req.send();
+    });
+  </script>
+</body>
+</html>

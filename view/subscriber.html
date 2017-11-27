@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Subscriber</title>
+</head>
+<body>
+  <div id="messages"></div>
+  <script>
+    new EventSource("/api/subscribe").addEventListener('message', function(e){
+      console.log(e);
+      document.getElementById('messages').innerHTML += e.data + '<br>\n';
+    });
+  </script>
+</body>
+</html>
