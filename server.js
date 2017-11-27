@@ -11,11 +11,22 @@ const rl = readline.createInterface({
 const server = express()
 
 server.use((req, res, next) => {
-  res.sseSetup = () => res.writeHead(200, {
-    'Content-Type': 'text/event-stream',
-    'Cache-Control': 'no-cache',
-    'Connection': 'keep-alive'
-  });
+  res.sseSetup = () => {
+    res.writeHead(200, {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      'Connection': 'keep-alive'
+    })
+    // 55秒のタイムアウト対策
+    const timer = setInterval(function() {
+      res.write(':\n\n');
+    }, 50000);
+
+    // 最初の30秒のタイムアウト対策
+    res.write(':\n\n');
+
+    req.on('close', () => { clearTimeout(timer)})
+  };
   res.sseSend = (data) => res.write("data: " + JSON.stringify(data) + "\n\n");
   next()
 })
