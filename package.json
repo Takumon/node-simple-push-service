@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node client.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint server.js"
   },
@@ -12,6 +12,9 @@
   "license": "MIT",
   "dependencies": {
     "eslint": "^4.12.0",
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "node-gyp": "^3.6.2",
+    "puppeteer": "^0.13.0",
+    "robotjs": "^0.4.7"
   }
 }
